@@ -22,13 +22,27 @@ public class Student {
     static {
         students = FileManager.readStudents();
     }
-
+/**
+ * Constructs a new Student instance with basic information.
+ *
+ * @param studentId  The unique identifier for the student.
+ * @param firstName  The first name of the student.
+ * @param lastName   The last name of the student.
+ */
     public Student(int studentId, String firstName, String lastName) {
         this.studentId = studentId;
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
+    /**
+     * Constructs a new Student instance with detailed information including course and year.
+     *
+     * @param studentId  The student's id number
+     * @param firstName  The first name of the student.
+     * @param lastName   The last name of the student.
+     * @param course     The course the student is studying
+     * @param year       The academic year the student is in
+     */
     public Student(int studentId, String firstName, String lastName, Course course, int year) {
         this.studentId = studentId;
         this.firstName = firstName;
@@ -66,6 +80,14 @@ public class Student {
         return results;
     }
 
+    /**
+     * Method to add a result onto an array creadted for the student in question
+     *
+     * @param module the module that's being graded
+     * @param grade the grade awarded
+     * @param year the year the module is being done in
+     * @param semester the semester the module is being done in
+     */
     public void addResult(Module module, double grade, int year, int semester) {
         Result result = new Result(module, grade, year, semester);
         results.add(result);
@@ -75,7 +97,11 @@ public class Student {
         results.add(result);
     }
 
-
+    /**
+     * Method to return the total credits awarded to a student for their course
+     *
+     * @return
+     */
     public int getTotalCredits() {
         int totalCredits = 0;
 
@@ -87,6 +113,11 @@ public class Student {
         return totalCredits;
     }
 
+    /**
+     * Method to return the total qca achieved for all the years of study fo the student
+     *
+     * @return
+     */
     public double overallFinalQca() {
         double totalQca = 0.0;
         int totalResults = 0;
@@ -102,6 +133,12 @@ public class Student {
         return totalResults > 0 ? totalQca / totalResults : 0.0;
     }
 
+    /**
+     * Calculating each year's qca separately
+     *
+     * @param year year of study that qca is needed for
+     * @return
+     */
     public double calculateQCAForYear(int year) {
         double totalQca = 0.0;
         int totalResults = 0;
@@ -132,6 +169,14 @@ public class Student {
         return calculateQCAForYear(4);
     }
 
+    /**
+     *  Method to display information from a student from the 'students' and 'results' csv files
+     *
+     *
+     *
+     * @param studentId
+     * @return
+     */
     private static Student findStudentById(int studentId) {
         try {
             String projectDirectory = System.getProperty("user.dir");
@@ -170,6 +215,17 @@ public class Student {
             return null;
         }
     }
+
+    /**
+     * Builder to create a new instance of Student
+     *
+     * @param studentId the student's id number
+     * @param firstName the student's first name
+     * @param lastName the student's last name
+     * @param course the student's course of study
+     * @param year the student's year of study
+     * @param degreeType the type of degree the student is receiving
+     */
     public Student(int studentId, String firstName, String lastName, Course course, int year,String degreeType) {
         this.studentId = studentId;
         this.firstName = firstName;
@@ -182,6 +238,13 @@ public class Student {
 
     public String getDegreeType() { return degreeType;}
 
+    /**
+     * A method to get the student's transcript.
+     * this displays all the student's information like their name, course
+     * Modules and grades in those modules
+     *
+     * @return
+     */
     public String getTranscript() {
         StringBuilder transcript = new StringBuilder();
         transcript.append("Transcript for ").append(firstName).append(" ").append(lastName).append(" (ID: ").append(studentId).append(")\n");
@@ -199,6 +262,12 @@ public class Student {
         return transcript.toString();
     }
 
+    /**
+     * A method to calculate letter grades into actual qca values
+     *
+     * @param result
+     * @return
+     */
     // Method to calculate the Quality Cumulative Average (QCA)
     private double calculateQCA(Result result) {
         double grade = result.getGrade();
