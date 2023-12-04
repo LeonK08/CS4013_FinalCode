@@ -55,9 +55,9 @@ public class MainMenu {
     }
 
     /**
-     * Finds a Student
-     * @param studentId
-     * @return
+     * Finds a Student in the CSV file using their ID
+     * @param studentId Student's ID number
+     * @return The student found with the ID
      */
     private static Student findStudentById(int studentId) {
         try {
