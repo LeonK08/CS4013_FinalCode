@@ -3,10 +3,17 @@ import java.util.Scanner;
 public class FacultyMenu {
     private Scanner scanner;
 
+    /**
+     * Constructs a new FacultyMenu with the given Scanner
+     * @param scanner The Scanner to use
+     */
     public FacultyMenu(Scanner scanner) {
         this.scanner = scanner;
     }
 
+    /**
+     * Displays the menu for faculty members. Displays login prompt followed by the option to submit results, review transcripts or exit to the main menu
+     */
     public void showMenu() {
         if (scanner.hasNextLine()) {
             scanner.nextLine();
@@ -44,12 +51,19 @@ public class FacultyMenu {
         }
     }
 
+    /**
+     * Allows a faculty member to log in using their ID
+     * @return The Faculty object found with the given ID
+     */
     public Faculty login() {
         System.out.println("Enter Faculty ID: ");
         String facultyId = scanner.nextLine();
         return FileManager.getFacultyById(facultyId); // Assuming FileManager has this method
     }
 
+    /**
+     * Allows the member of faculty to add results to a student's record using the student's ID and the module code
+     */
     private void submitResults() {
         System.out.println("Enter Student ID for result submission:");
         int studentId = scanner.nextInt();
@@ -77,6 +91,9 @@ public class FacultyMenu {
         }
     }
 
+    /**
+     * Allows a member of faculty to view a student's results transcript
+     */
     private void reviewTranscripts() {
         System.out.println("Enter Student ID to review transcripts:");
         int studentId = scanner.nextInt();

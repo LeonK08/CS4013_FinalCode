@@ -25,7 +25,7 @@ public class Faculty {
     }
 
     /**
-     * Removes a module from the list of modules taught by the faculty member. If the faculty member is already not teaching that module, displays a message saying so
+     * Removes a module from the list of modules taught by the faculty member
      * @param module The Module to remove from modulesTaught
      */
     public void removeModule(String module) {
