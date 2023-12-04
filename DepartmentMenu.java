@@ -1,11 +1,27 @@
 import java.util.Scanner;
-
+/**
+ * Represents the department menu in the UL Student Records system.
+ * This class is responsible for handling various departmental tasks such as holding exam boards,
+ * reviewing student transcripts, and altering student progression.
+ */
 public class DepartmentMenu {
     private Scanner scanner;
     private boolean examBoardInSession = false;
+
+    /**
+     * Constructs a new DepartmentMenu with the given scanner.
+     *
+     * @param scanner The scanner object to read input from the user.
+     */
     public DepartmentMenu(Scanner scanner) {
         this.scanner = scanner;
     }
+
+    /**
+     * Displays the department menu in the command line and handles user interactions.
+     * Allows users to choose various departmental operations like holding exam boards,
+     * reviewing transcripts, and changing student progression.
+     */
     public void showMenu() {
         boolean isRunning = true;
 
@@ -47,6 +63,11 @@ public class DepartmentMenu {
             }
         }
     }
+
+    /**
+     * Handles the review of student transcripts.
+     * Can only be performed when the exam board is in session.
+     */
     private void reviewStudentTranscripts() {
         System.out.println("Enter Student ID to review transcripts:");
         int studentId = scanner.nextInt();
@@ -58,6 +79,12 @@ public class DepartmentMenu {
             System.out.println("Student not found.");
         }
     }
+
+    /**
+     * Handles the change of student progression.
+     * Provides options like repeating a module, linking-in modules, repeating a semester or year.
+     * Can only be performed when the exam board is in session.
+     */
     private void changeStudentProgression() {
         System.out.println("Enter Student ID to change progression:");
         int studentId = scanner.nextInt();
