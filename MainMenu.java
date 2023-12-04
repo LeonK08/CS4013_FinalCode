@@ -28,7 +28,8 @@ public class MainMenu {
                 case 2:
                     System.out.print("Enter student ID to log in: ");
                     int studentId = scanner.nextInt();
-                    Student foundStudent = findStudentById(studentId);
+                    //Student foundStudent = findStudentById(studentId);
+                    Student foundStudent = FileManager.getStudentById(studentId);
 
                     if (foundStudent != null) {
                         System.out.println("Student logged in successfully.");
@@ -52,6 +53,12 @@ public class MainMenu {
             }
         }
     }
+
+    /**
+     * Finds a Student
+     * @param studentId
+     * @return
+     */
     private static Student findStudentById(int studentId) {
         try {
             String projectDirectory = System.getProperty("user.dir");
