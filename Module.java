@@ -11,6 +11,7 @@ public class Module {
     static {
         modules = FileManager.readModules();
     }
+
     /**
      * Constructs a Module with the given title, code and number of credits
      *
@@ -24,6 +25,11 @@ public class Module {
         this.credits = credits;
     }
 
+    /**
+     * Constructs a Module with the given code
+     *
+     * @param code    Module code
+     */
     public Module(String code){
         this.code = code;
     }

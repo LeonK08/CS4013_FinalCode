@@ -81,7 +81,7 @@ public class FileManager {
 
     public static List<Student> readStudents() {
         List<Student> students = new ArrayList<>();
-        try (CSVParser parser = new CSVParser(new FileReader("data/students.csv"), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
+        try (CSVParser parser = new CSVParser(new FileReader("/Data/students.csv"), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
             for (CSVRecord record : parser) {
                 int studentId = Integer.parseInt(record.get("StudentID"));
                 String firstName = record.get("FirstName");
@@ -218,8 +218,8 @@ public class FileManager {
     public static Student getStudentById(int studentId) {
         try {
             String projectDirectory = System.getProperty("user.dir");
-            String studentsCsvFilePath = projectDirectory + "data/students.csv";
-            String resultsCsvFilePath = projectDirectory + "data/results.csv";
+            String studentsCsvFilePath = projectDirectory + "/Data/students.csv";
+            String resultsCsvFilePath = projectDirectory + "/Data/results.csv";
 
             FileReader studentsReader = new FileReader(studentsCsvFilePath);
             CSVParser studentsCsvParser = new CSVParser(studentsReader, CSVFormat.DEFAULT.withHeader());
