@@ -5,13 +5,21 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import org.apache.commons.csv.CSVPrinter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Handles file operations for the university system, including reading and writing faculty, module, course, and student data.
+ */
+
 public class FileManager {
 
+    /**
+     * Reads faculty data from a CSV file and returns a list of Faculty objects.
+     *
+     * @return List of Faculty objects read from the file.
+     */
     public static List<Faculty> readFaculty() {
         List<Faculty> faculties = new ArrayList<>();
         try (CSVParser parser = new CSVParser(new FileReader("Data/faculty.csv"), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
@@ -26,6 +34,11 @@ public class FileManager {
         return faculties;
     }
 
+    /**
+     * Reads module data from a CSV file and returns a list of Module objects.
+     *
+     * @return List of Module objects read from the file.
+     */
     public static List<Module> readModules() {
         List<Module> modules = new ArrayList<>();
         try (CSVParser parser = new CSVParser(new FileReader("Data/modules.csv"), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
@@ -41,6 +54,11 @@ public class FileManager {
         return modules;
     }
 
+    /**
+     * Reads course data from a CSV file and returns a list of Course objects.
+     *
+     * @return List of Course objects read from the file.
+     */
     public static List<Course> readCourses() {
         List<Course> courses = new ArrayList<>();
         try (CSVParser parser = new CSVParser(new FileReader("Data/courses.csv"), CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
@@ -55,6 +73,11 @@ public class FileManager {
         return courses;
     }
 
+    /**
+     * Reads student data from a CSV file and returns a list of Student objects.
+     *
+     * @return List of Student objects read from the file.
+     */
 
     public static List<Student> readStudents() {
         List<Student> students = new ArrayList<>();
@@ -76,6 +99,13 @@ public class FileManager {
     }
 
 
+    /**
+     * Finds a Course by its code.
+     *
+     * @param code The code of the Course to find.
+     * @param courses Array of Courses to search in.
+     * @return The found Course object, or null if not found.
+     */
 
     private static Course findCourseByCode(String code, Course[] courses) {
         for (Course course : courses) {
@@ -86,6 +116,13 @@ public class FileManager {
         return null;
     }
 
+    /**
+     * Finds a Module by its code.
+     *
+     * @param code The code of the Module to find.
+     * @param modules Array of Modules to search in.
+     * @return The found Module object, or null if not found.
+     */
     private static Module findModuleByCode(String code, Module[] modules) {
         for (Module module : modules) {
             if (module.getCode().equals(code)) {
@@ -94,6 +131,13 @@ public class FileManager {
         }
         return null;
     }
+
+    /**
+     * Finds a Student by their ID using CSV file data.
+     *
+     * @param studentId The ID of the student to find.
+     * @return The found Student object, or null if not found.
+     */
     private static Student findStudentById(int studentId) {
         try {
             String projectDirectory = System.getProperty("user.dir");
@@ -132,6 +176,13 @@ public class FileManager {
             return null;
         }
     }
+
+    /**
+     * Finds a Module by its code by reading from a CSV file.
+     *
+     * @param code The code of the Module to find.
+     * @return The found Module object, or null if not found.
+     */
     public static Module findModuleByCode(String code) {
         List<Module> modules = readModules();
         for (Module module : modules) {
@@ -141,6 +192,13 @@ public class FileManager {
         }
         return null;
     }
+
+    /**
+     * Gets a Faculty member by their ID by reading from a CSV file.
+     *
+     * @param facultyId The ID of the Faculty member to find.
+     * @return The found Faculty object, or null if not found.
+     */
     public static Faculty getFacultyById(String facultyId) {
         List<Faculty> faculties = readFaculty();
         for (Faculty faculty : faculties) {
@@ -151,6 +209,12 @@ public class FileManager {
         return null;
     }
 
+    /**
+     * Gets a Student by their ID by reading from a CSV file.
+     *
+     * @param studentId The ID of the student to find.
+     * @return The found Student object, or null if not found.
+     */
     public static Student getStudentById(int studentId) {
         try {
             String projectDirectory = System.getProperty("user.dir");
@@ -188,6 +252,12 @@ public class FileManager {
             return null;
         }
     }
+
+    /**
+     * Updates the results of a given student in the results CSV file.
+     *
+     * @param student The student whose results need updating.
+     */
     public static void updateStudentResults(Student student) {
         List<CSVRecord> allRecords = new ArrayList<>();
         String resultsFile = "data/results.csv";
